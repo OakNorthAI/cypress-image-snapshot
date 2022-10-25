@@ -57,6 +57,8 @@ export function matchImageSnapshotCommand(defaultOptions) {
     const allowSizeMismatch = !!options.allowSizeMismatch;
 
     cy.task(MATCH, {
+      // eg. `cypress/integration/myDir/mySpec.js
+      specFileRelativeToRoot: Cypress.spec.relative,
       screenshotsFolder,
       updateSnapshots,
       options,
