@@ -1,5 +1,28 @@
 # cypress-image-snapshot
 
+## 5.0.0
+
+### Major Changes
+
+- Set deterministic path for snapshots
+  BREAKING: While the path is now deterministic, it may now be slightly different.
+
+  e.g. given this folder structure:
+
+  ```
+  /
+    / package.json
+    / cypress.config.js
+    / cypress
+      / e2e
+        / some-folder
+          / some-test.cy.js
+      / snapshots
+  ```
+
+  Previously snapshots would have been in `/cypress/snapshots/some-folder/some-test.cy.js/` when run without a `--spec` filter and maybe something like `/cypress/snapshots/some-test.cy.js/` with a filter.
+  Now, snapshots would be in `/cypress/snapshots/e2e/some-folder/some-test.cy.js/` - the path is derived relative to the CWD.
+
 ## 4.2.0
 
 ### Minor Changes
