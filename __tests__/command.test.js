@@ -20,6 +20,9 @@ global.Cypress = {
   Commands: {
     add: jest.fn(),
   },
+  spec: {
+    relative: 'cypress/e2e/subfolder/testfile.cy.js',
+  },
 };
 
 global.cy = {
@@ -53,6 +56,7 @@ describe('command', () => {
     expect(cy.task).toHaveBeenCalledWith('Matching image snapshot', {
       screenshotsFolder: '/cypress/screenshots',
       updateSnapshots: false,
+      specFileRelativeToRoot: 'e2e/subfolder/testfile.cy.js',
       options: {
         failureThreshold: 10,
         failureThresholdType: 'pixel',

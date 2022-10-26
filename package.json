@@ -1,6 +1,6 @@
 {
   "name": "@oaknorthai/cypress-image-snapshot",
-  "version": "4.2.0",
+  "version": "5.0.0",
   "description": "Cypress bindings for jest-image-snapshot.",
   "repository": "https://github.com/OakNorthAI/cypress-image-snapshot",
   "author": "Jack Cross <jack@palmer.net>",
@@ -48,7 +48,7 @@
     "rimraf": "^2.6.2"
   },
   "peerDependencies": {
-    "cypress": "^4.5.0 - 9"
+    "cypress": "^4.5.0 - 10"
   },
   "husky": {
     "hooks": {

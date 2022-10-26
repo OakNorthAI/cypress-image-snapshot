@@ -58,6 +58,7 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
   const {
     screenshotsFolder,
     updateSnapshots,
+    specFileRelativeToRoot,
     options: {
       failureThreshold = 0,
       failureThresholdType = 'pixel',
@@ -70,17 +71,14 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
   const receivedImageBuffer = fs.readFileSync(screenshotPath);
   fs.removeSync(screenshotPath);
 
-  const { dir: screenshotDir, name } = path.parse(
-    screenshotPath
-  );
+  const { name } = path.parse(screenshotPath);
 
   // remove the cypress v5+ native retries suffix from the file name
   const snapshotIdentifier = name.replace(/ \(attempt [0-9]+\)/, '');
 
-  const relativePath = path.relative(screenshotsFolder, screenshotDir);
   const snapshotsDir = customSnapshotsDir
-    ? path.join(process.cwd(), customSnapshotsDir, relativePath)
-    : path.join(screenshotsFolder, '..', 'snapshots', relativePath);
+    ? path.join(process.cwd(), customSnapshotsDir, specFileRelativeToRoot)
+    : path.join(screenshotsFolder, '..', 'snapshots', specFileRelativeToRoot);
 
   const snapshotKebabPath = path.join(
     snapshotsDir,
@@ -92,7 +90,7 @@ export function matchImageSnapshotPlugin({ path: screenshotPath }) {
   );
 
   const diffDir = customDiffDir
-    ? path.join(process.cwd(), customDiffDir, relativePath)
+    ? path.join(process.cwd(), customDiffDir, specFileRelativeToRoot)
     : path.join(snapshotsDir, '__diff_output__');
   const diffDotPath = path.join(diffDir, `${snapshotIdentifier}${dotDiff}`);
   const actualDotPath = path.join(diffDir, `${snapshotIdentifier}${dotActual}`);
