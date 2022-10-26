@@ -32,7 +32,7 @@ describe('plugin', () => {
     const options = {
       screenshotsFolder: '/cypress/screenshots',
       updateSnapshots: true,
-      specFileRelativeToRoot: 'cypress/integration/subfolder/testfile.cy.js',
+      specFileRelativeToRoot: 'integration/subfolder/testfile.cy.js',
     };
 
     matchImageSnapshotOptions()(options);
@@ -42,13 +42,12 @@ describe('plugin', () => {
     });
     expect(result).toEqual({
       path:
-        '/cypress/snapshots/cypress/integration/subfolder/testfile.cy.js/__diff_output__/cheese.diff.png',
+        '/cypress/snapshots/integration/subfolder/testfile.cy.js/__diff_output__/cheese.diff.png',
     });
     expect(diffImageToSnapshot).toHaveBeenCalledWith({
-      snapshotsDir:
-        '/cypress/snapshots/cypress/integration/subfolder/testfile.cy.js',
+      snapshotsDir: '/cypress/snapshots/integration/subfolder/testfile.cy.js',
       diffDir:
-        '/cypress/snapshots/cypress/integration/subfolder/testfile.cy.js/__diff_output__',
+        '/cypress/snapshots/integration/subfolder/testfile.cy.js/__diff_output__',
       updateSnapshot: true,
       receivedImageBuffer: 'cheese',
       snapshotIdentifier: 'cheese',

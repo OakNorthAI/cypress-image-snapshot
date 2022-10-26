@@ -58,7 +58,8 @@ export function matchImageSnapshotCommand(defaultOptions) {
 
     cy.task(MATCH, {
       // eg. `cypress/integration/myDir/mySpec.js
-      specFileRelativeToRoot: Cypress.spec.relative,
+      // Strip leading `cypress/` if there is one - redundant
+      specFileRelativeToRoot: Cypress.spec.relative.replace(/^cypress\//, ''),
       screenshotsFolder,
       updateSnapshots,
       options,
